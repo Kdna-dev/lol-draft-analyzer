@@ -47,7 +47,7 @@ watch(selectedChampionId, async (newVal) => {
                     <aside>
                         lineas
                     </aside>
-                    <main>
+                    <main style="max-height: calc(100vh - 203px);">
                         <ChampionOverview v-if="isChampionSelected"/>
                         <h3 v-else="isChampionSelected">Seleccione un campeon</h3>
                     </main>

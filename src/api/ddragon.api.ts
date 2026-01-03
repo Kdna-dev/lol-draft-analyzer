@@ -17,3 +17,9 @@ export async function getChampionInfo(id:string, version = "15.24.1", language =
 export function getChampionProfilePicture(id:string, version = "15.24.1") {
     return `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`;
 }
+
+export function getSpellImageByName(id:string, version = "15.24.1") {
+    const image:string =  `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${id}`;
+    console.log(image);
+    return image;
+}

@@ -1,6 +1,6 @@
 import { ref, computed } from "vue"
 import { defineStore } from 'pinia'
-import { getChampions, getChampionInfo, getChampionProfilePicture } from "../api/ddragon.api"
+import { getChampions, getChampionInfo, getChampionProfilePicture, getSpellImageByName } from "../api/ddragon.api"
 import { ChampionDetail, ChampionProfileDTO, type ChampionDTO, type ChampionDetailDTO } from "@/models/champion/index"
 
 
@@ -40,6 +40,12 @@ export const useChampionStore = defineStore('championStore', () =>{
         return selectedChampion.value ? new ChampionDetail(selectedChampion.value) : null;
     })
 
+    async function getSpellImage(value: string){
+        if (!value) return "";
+        const result = await getSpellImageByName(value);
+        return result ? result : "";
+    }
+
     return {
       champions,
       selectedChampionId,
@@ -48,6 +54,7 @@ export const useChampionStore = defineStore('championStore', () =>{
       championKeys,
       loadChampionInfo,
       championProfiles,
-      selectedChampionDetail
+      selectedChampionDetail,
+      getSpellImage
     };
 })

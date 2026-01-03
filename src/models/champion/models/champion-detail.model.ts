@@ -49,4 +49,12 @@ export class ChampionDetail {
   getSkinSplash(num: number): string {
     return `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${this.id}_${num}.jpg`;
   }
+
+  get dictSpellImages (): Record<string, string> {
+    let result:Record<string, string> = {};
+    this.spells.forEach(element => {
+      result[element.image.full] = `https://ddragon.leagueoflegends.com/cdn/15.24.1/img/spell/${element.image.full}`;
+    });
+    return result;
+  }
 }
