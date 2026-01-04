@@ -29,14 +29,14 @@ async function getImage(value:string){
             <n-layout-content
                 content-style="padding: 12px 0;"
             >
-                <n-space vertical>
+                <n-space vertical :size="2">
                     <n-progress
                         type="line"
                         status="warning"
                         :percentage="calculePercentage(championDetail.info.attack)"
-                        :height="24"
-                        border-radius="12px 0 12px 0"
-                        fill-border-radius="12px 0 12px 0"
+                        :height="12"
+                        border-radius="6px 0 6px 0"
+                        fill-border-radius="6px 0 6px 0"
                     >
                         Ataque
                     </n-progress>
@@ -44,9 +44,9 @@ async function getImage(value:string){
                         type="line"
                         status="info"
                         :percentage="calculePercentage(championDetail.info.magic)"
-                        :height="24"
-                        border-radius="12px 0 12px 0"
-                        fill-border-radius="12px 0 12px 0"
+                        :height="12"
+                        border-radius="6px 0 6px 0"
+                        fill-border-radius="6px 0 6px 0"
                     >
                         Magia
                     </n-progress>
@@ -54,9 +54,9 @@ async function getImage(value:string){
                         type="line"
                         status="success"
                         :percentage="calculePercentage(championDetail.info.defense)"
-                        :height="24"
-                        border-radius="12px 0 12px 0"
-                        fill-border-radius="12px 0 12px 0"
+                        :height="12"
+                        border-radius="6px 0 6px 0"
+                        fill-border-radius="6px 0 6px 0"
                     >
                         Defensa
                     </n-progress>
@@ -64,9 +64,9 @@ async function getImage(value:string){
                         type="line"
                         status="error"
                         :percentage="calculePercentage(championDetail.info.difficulty)"
-                        :height="24"
-                        border-radius="12px 0 12px 0"
-                        fill-border-radius="12px 0 12px 0"
+                        :height="12"
+                        border-radius="6px 0 6px 0"
+                        fill-border-radius="6px 0 6px 0"
                     >
                         Dificultad
                     </n-progress>
@@ -88,11 +88,12 @@ async function getImage(value:string){
 <style scoped>
     h1, h3 {
         margin-top: 0;
+        margin-bottom: 6px;
         z-index: 2;
     }
 
     .n-layout-header {
-        min-height: 280px;
+        min-height: 200px;
         background-size: cover;
         display: flex;
         align-items: flex-start;
@@ -110,7 +111,7 @@ async function getImage(value:string){
         background: linear-gradient(
             to top,
             rgba(10, 15, 30, 0.95) 0%,
-            rgba(10, 15, 30, 0.4) 50%,
+            rgba(10, 15, 30, 0.4) 30%,
             rgba(10, 15, 30, 0.2) 70%,
             transparent 100%
         );

@@ -8,6 +8,7 @@ import {NLayoutHeader, NLayoutContent, NLayoutFooter} from 'naive-ui'
 import { useChampionStore } from '@/stores/champion'
 import ChampionProfile from '@/components/ChampionProfile.vue'
 import ChampionOverview from '@/components/ChampionOverview.vue'
+import DraftSection from '@/components/DraftSection.vue'
 
 const theme = ref<GlobalTheme | null>(darkTheme)
 const championStore = useChampionStore()
@@ -45,9 +46,9 @@ watch(selectedChampionId, async (newVal) => {
             <n-layout-content>
                 <div class="layout">
                     <aside>
-                        lineas
+                        <DraftSection/>
                     </aside>
-                    <main style="max-height: calc(100vh - 203px);">
+                    <main>
                         <ChampionOverview v-if="isChampionSelected"/>
                         <h3 v-else="isChampionSelected">Seleccione un campeon</h3>
                     </main>
@@ -57,7 +58,7 @@ watch(selectedChampionId, async (newVal) => {
                             <n-space
                                 :size="[8,8]"
                                 class="hide-scrollbar"
-                                style="height: calc(100vh - 203px); overflow-y: scroll;"
+                                style="height: calc(100vh - 155px); overflow-y: scroll;"
                             >
                                 <ChampionProfile
                                     v-for="value in championList"
@@ -86,11 +87,11 @@ watch(selectedChampionId, async (newVal) => {
     }
 
     .n-layout-header {
-        padding: 24px;
+        padding: 12px;
     }
 
     .n-layout-footer {
-        padding: 24px;
+        padding: 12px;
     }
 
     .hide-scrollbar::-webkit-scrollbar {

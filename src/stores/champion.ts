@@ -8,6 +8,7 @@ export const useChampionStore = defineStore('championStore', () =>{
     const champions = ref<Record<string, ChampionDTO> | null>(null)
     const selectedChampion = ref<ChampionDetailDTO | null>(null)
     const selectedChampionId = ref("")
+    const laneAssignment = ref<Record<string, ChampionDetailDTO> | null>(null) 
 
     async function loadChampionList(){
         var result = await getChampions()
@@ -55,6 +56,7 @@ export const useChampionStore = defineStore('championStore', () =>{
       loadChampionInfo,
       championProfiles,
       selectedChampionDetail,
-      getSpellImage
+      getSpellImage,
+      laneAssignment
     };
 })
