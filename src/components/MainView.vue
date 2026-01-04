@@ -39,26 +39,28 @@ watch(selectedChampionId, async (newVal) => {
 
 <template>
     <n-layout position="absolute">
-        <n-space vertical justify="space-between">
+        <n-space vertical :size="0" justify="space-between">
             <n-layout-header>
                 LoL - Draft Analyzer
             </n-layout-header>
             <n-layout-content>
                 <div class="layout">
-                    <aside>
+                    <aside style="background-color: #282828;">
                         <DraftSection/>
                     </aside>
                     <main>
                         <ChampionOverview v-if="isChampionSelected"/>
-                        <h3 v-else="isChampionSelected">Seleccione un campeon</h3>
+                        <div v-else class="placeholder">
+                            <h3>Seleccione un campeon</h3>
+                        </div>
                     </main>
-                    <aside style="padding: 0 12px;">
+                    <aside style="padding: 12px; background-color: #282828;">
                         <n-space vertical>
                             <n-input v-model:value="championSearch" type="text" placeholder="Buscar Campeon" />
                             <n-space
                                 :size="[8,8]"
                                 class="hide-scrollbar"
-                                style="height: calc(100vh - 155px); overflow-y: scroll;"
+                                style="height: calc(100vh - 159px); overflow-y: scroll;"
                             >
                                 <ChampionProfile
                                     v-for="value in championList"
@@ -83,7 +85,7 @@ watch(selectedChampionId, async (newVal) => {
 <style scoped>
     .layout {
         display: grid;
-        grid-template-columns: 25% 1fr 25%;
+        grid-template-columns: 200px 1fr 25%;
     }
 
     .n-layout-header {
@@ -98,5 +100,9 @@ watch(selectedChampionId, async (newVal) => {
         display: none;
         width: 0;
         height: 0;
+    }
+
+    .placeholder {
+        padding: 0 12px;
     }
 </style>

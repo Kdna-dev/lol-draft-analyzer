@@ -27,7 +27,7 @@ async function getImage(value:string){
                 <h3>{{ championDetail.title }}</h3>
             </n-layout-header>
             <n-layout-content
-                content-style="padding: 12px 0;"
+                content-style="padding: 12px;"
             >
                 <n-space vertical :size="2">
                     <n-progress
@@ -81,7 +81,9 @@ async function getImage(value:string){
                 </n-space>
             </n-layout-content>
         </n-layout>
-        <p v-else>Cargando campeón...</p>
+        <div v-else class="placeholder">
+            <p>Cargando campeón...</p>
+        </div>
     </div>
 </template>
 
@@ -123,6 +125,10 @@ async function getImage(value:string){
         display: none;
         width: 0;
         height: 0;
+    }
+
+    .placeholder {
+        padding: 0 12px;
     }
 
 </style>

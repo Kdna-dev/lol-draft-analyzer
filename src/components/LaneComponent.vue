@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import { computed, ref } from 'vue';
-    import { NDivider, NLayout, NLayoutSider, NLayoutContent, NButton, NAvatar } from 'naive-ui';
+import { computed, ref } from 'vue';
+import { NButton, NAvatar, NSpace, NDivider } from 'naive-ui';
 import { useChampionStore } from '@/stores/champion';
 const props = defineProps({
     laneName: String
@@ -10,28 +10,46 @@ const isLaneAssigned = ref(false)
 const championStore = useChampionStore()
 const laneChampion = computed(() => championStore.laneAssignment?.[props.laneName!] ?? null )
 
-const avatarAssignedSrc = computed(() => props.laneName ? `/Position_Challenger-${props.laneName}.png` : '')
+const avatarAssignedSrc = computed(() => props.laneName ? `${laneChampion.value?.profileUrl}` : '')
 const avatarDefaultSrc = computed(() => props.laneName ? `/${props.laneName}.png` : '')
+
+function asignLane() {
+    championStore.laneSelector = props.laneName!
+    championStore.assignLane()
+    isLaneAssigned.value = true
+}
+
+function removeLane () {
+    championStore.laneSelector = props.laneName!
+    championStore.unassignLane()
+    isLaneAssigned.value = false
+}
 
 </script>
 
 <template>
-    <n-layout has-sider>
-        <n-layout-sider>
-            <n-avatar v-if="isLaneAssigned" size="small" :src="avatarAssignedSrc"></n-avatar>
-            <n-avatar size="small" :src="avatarDefaultSrc"></n-avatar>
-        </n-layout-sider>
-        <n-layout-content>
-            <n-button v-if="isLaneAssigned" quaternary type="error">
+    <n-divider style="margin-bottom: 8px; margin-top: 12px;" title-placement="left">{{ laneName }}</n-divider>
+    <n-space>
+        <div class="lane-container">
+            <n-avatar v-if="isLaneAssigned" :size="64" :src="avatarAssignedSrc"></n-avatar>
+            <n-avatar v-else :size="64" :src="avatarDefaultSrc"></n-avatar>
+            <n-button v-if="isLaneAssigned" quaternary type="error" @click="removeLane">
               Remover
             </n-button>
-            <n-button v-else quaternary type="success">
+            <n-button v-else secondary type="success" @click="asignLane">
                 Asignar
             </n-button>
-        </n-layout-content>
-    </n-layout>
+        </div>
+        <div class="lane-text">
+        </div>
+    </n-space>
 </template>
 
 <style scoped>
-
+ .lane-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    align-content: space-between;
+ }
 </style>

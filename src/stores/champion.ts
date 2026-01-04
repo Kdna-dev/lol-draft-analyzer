@@ -8,7 +8,8 @@ export const useChampionStore = defineStore('championStore', () =>{
     const champions = ref<Record<string, ChampionDTO> | null>(null)
     const selectedChampion = ref<ChampionDetailDTO | null>(null)
     const selectedChampionId = ref("")
-    const laneAssignment = ref<Record<string, ChampionDetailDTO> | null>(null) 
+    const laneAssignment = ref<Record<string, ChampionDetail>>({})
+    const laneSelector = ref("")
 
     async function loadChampionList(){
         var result = await getChampions()
@@ -47,6 +48,19 @@ export const useChampionStore = defineStore('championStore', () =>{
         return result ? result : "";
     }
 
+    async function assignLane(){
+        const lane = laneSelector.value;
+        const champion = selectedChampionDetail.value;
+        if (!lane || !champion) return;
+        laneAssignment.value[lane] = champion;
+    }
+
+    async function unassignLane(){
+        const lane = laneSelector.value;
+        if (!lane) return;
+        delete laneAssignment.value[lane];
+    }
+
     return {
       champions,
       selectedChampionId,
@@ -57,6 +71,9 @@ export const useChampionStore = defineStore('championStore', () =>{
       championProfiles,
       selectedChampionDetail,
       getSpellImage,
-      laneAssignment
+      laneAssignment,
+      laneSelector,
+      assignLane,
+      unassignLane
     };
 })

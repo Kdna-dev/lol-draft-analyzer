@@ -42,6 +42,10 @@ export class ChampionDetail {
     return this.dto.info;
   }
 
+  get profileUrl(): string {
+    return `https://ddragon.leagueoflegends.com/cdn/15.24.1/img/champion/${this.id}.png`;
+  }
+
   get splashUrl(): string {
     return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.id}_0.jpg`;
   }
