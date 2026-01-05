@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useUserExperienceStore } from '@/stores/ux';
 import MainView from './MainView.vue';
+import DraftAnalysisView from './DraftAnalysisView.vue';
 import { SunnySharp as LightIcon, MoonSharp as DarkIcon } from '@vicons/ionicons5'
 import { NButton, NIcon, NSpace, NH3 } from 'naive-ui';
 import { NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader } from 'naive-ui';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const uxStore = useUserExperienceStore()
 
@@ -12,7 +13,7 @@ function switchTheme() {
     uxStore.switchTheme()
 }
 const isDarkTheme = computed(() => uxStore.isDarkTheme)
-
+const showDraftAnalysis = computed(() => uxStore.showDraftAnalysis)
 </script>
 
 <template>
@@ -42,7 +43,8 @@ const isDarkTheme = computed(() => uxStore.isDarkTheme)
                 </n-space>
             </n-layout-header>
             <n-layout-content>
-                <MainView/>
+                <DraftAnalysisView v-if="showDraftAnalysis"/>
+                <MainView v-else/>
             </n-layout-content>
             <n-layout-footer bordered>
             Proyecto realizado para el bootcamp de Frontend Moderno de Codigo Facilito por Santiago Cabrera - Kdna.dev

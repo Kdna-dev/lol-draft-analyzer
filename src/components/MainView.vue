@@ -32,6 +32,7 @@ watch(selectedChampionId, async (newVal) => {
         championStore.loadChampionInfo()
     }
 })
+
 </script>
 
 <template>

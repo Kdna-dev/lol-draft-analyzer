@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { NButton, NIcon } from 'naive-ui';
 import { StatsChartSharp as ChartIcon } from '@vicons/ionicons5'
+import { useUserExperienceStore } from '@/stores/ux'
+import { useChampionStore } from '@/stores/champion';
 
 import LaneComponent from './LaneComponent.vue';
+import { computed } from 'vue';
 
 const lanes:string[] = ['TOP', 'JG', 'MID', 'ADC', 'SUP']
+
+const championStore = useChampionStore()
+const enableDraftAnalysis = computed(() => championStore.draftComplete)
+
+const uxStore = useUserExperienceStore()
+function switchToDraft() {
+    uxStore.showDraftAnalysis = true
+}
+
 </script>
 
 <template>
@@ -12,7 +24,7 @@ const lanes:string[] = ['TOP', 'JG', 'MID', 'ADC', 'SUP']
         <div class="lane-section">
             <LaneComponent v-for="value in lanes" :lane-name="value"/>
         </div>
-        <n-button type="info">
+        <n-button type="info" @click="switchToDraft" :disabled="!enableDraftAnalysis">
             <template #icon>
                 <n-icon>
                     <ChartIcon />

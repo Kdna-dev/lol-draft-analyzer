@@ -61,6 +61,8 @@ export const useChampionStore = defineStore('championStore', () =>{
         delete laneAssignment.value[lane];
     }
 
+    const draftComplete = computed(() => Object.keys(laneAssignment.value).length == 5);
+
     return {
       champions,
       selectedChampionId,
@@ -74,6 +76,7 @@ export const useChampionStore = defineStore('championStore', () =>{
       laneAssignment,
       laneSelector,
       assignLane,
-      unassignLane
+      unassignLane,
+      draftComplete
     };
 })

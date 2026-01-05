@@ -12,5 +12,7 @@ export const useUserExperienceStore = defineStore( 'uxStore', () => {
 
     const isDarkTheme = computed(() => theme.value?.name == 'dark' ? true : false )
 
-    return {theme, switchTheme, isDarkTheme}
+    const showDraftAnalysis = ref(false)
+
+    return { theme, switchTheme, isDarkTheme, showDraftAnalysis }
 })

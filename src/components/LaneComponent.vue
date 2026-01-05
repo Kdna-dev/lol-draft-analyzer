@@ -6,8 +6,8 @@ const props = defineProps({
     laneName: String
 })
 
-const isLaneAssigned = ref(false)
 const championStore = useChampionStore()
+const isLaneAssigned = computed(() => Object.keys(championStore.laneAssignment).includes(props.laneName!))
 const laneChampion = computed(() => championStore.laneAssignment?.[props.laneName!] ?? null )
 
 const avatarAssignedSrc = computed(() => props.laneName ? `${laneChampion.value?.profileUrl}` : '')
@@ -16,13 +16,11 @@ const avatarDefaultSrc = computed(() => props.laneName ? `/${props.laneName}.png
 function asignLane() {
     championStore.laneSelector = props.laneName!
     championStore.assignLane()
-    isLaneAssigned.value = true
 }
 
 function removeLane () {
     championStore.laneSelector = props.laneName!
     championStore.unassignLane()
-    isLaneAssigned.value = false
 }
 
 </script>
