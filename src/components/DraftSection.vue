@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NSpace, NButton, NIcon } from 'naive-ui';
+import { NButton, NIcon } from 'naive-ui';
 import { StatsChartSharp as ChartIcon } from '@vicons/ionicons5'
 
 import LaneComponent from './LaneComponent.vue';

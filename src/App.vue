@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import MainView from './components/MainView.vue'
+import { onMounted, ref, computed } from 'vue'
 
 import type { GlobalTheme } from 'naive-ui'
 import { darkTheme } from 'naive-ui'
 import { NConfigProvider} from 'naive-ui'
+import LayoutView from './components/LayoutView.vue'
+import { useUserExperienceStore } from './stores/ux'
 
-const theme = ref<GlobalTheme | null>(darkTheme)
+const uxStore = useUserExperienceStore()
+const theme = computed<GlobalTheme | null>(() => uxStore.theme || darkTheme)
 
 </script>
 
 <template>
   <n-config-provider :theme="theme">
-    <MainView/>
+    <LayoutView/>
   </n-config-provider>
 </template>
 
