@@ -11,7 +11,7 @@ const isLaneAssigned = computed(() => Object.keys(championStore.laneAssignment).
 const laneChampion = computed(() => championStore.laneAssignment?.[props.laneName!] ?? null )
 
 const avatarAssignedSrc = computed(() => props.laneName ? `${laneChampion.value?.profileUrl}` : '')
-const avatarDefaultSrc = computed(() => props.laneName ? `/${props.laneName}.png` : '')
+const avatarDefaultSrc = computed(() => props.laneName ? `${props.laneName}.png` : '')
 
 function asignLane() {
     championStore.laneSelector = props.laneName!
