@@ -32,7 +32,7 @@ const actionButtonSize = computed(() => isMobile ? 'tiny' : 'medium')
 
 <template>
     <n-divider v-if="!isMobile" style="margin-bottom: 8px; margin-top: 12px;" title-placement="left">{{ laneName }}</n-divider>
-    <n-space :size="[8,0]">
+    <n-space :size="0">
         <n-space align="center" :vertical="isMobile">
             <n-avatar v-if="isLaneAssigned" :size="laneImageSize" :src="avatarAssignedSrc"></n-avatar>
             <n-avatar v-else :size="laneImageSize" :src="avatarDefaultSrc"></n-avatar>
