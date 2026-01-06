@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import { NButton, NAvatar, NSpace, NDivider } from 'naive-ui';
 import { useChampionStore } from '@/stores/champion';
+import { useUserExperienceStore } from '@/stores/ux';
 const props = defineProps({
     laneName: String
 })
@@ -23,12 +24,15 @@ function removeLane () {
     championStore.unassignLane()
 }
 
+const uxStore = useUserExperienceStore()
+const isMobile = computed(() => uxStore.isMobile)
+
 </script>
 
 <template>
-    <n-divider style="margin-bottom: 8px; margin-top: 12px;" title-placement="left">{{ laneName }}</n-divider>
+    <n-divider v-if="!isMobile" style="margin-bottom: 8px; margin-top: 12px;" title-placement="left">{{ laneName }}</n-divider>
     <n-space>
-        <div class="lane-container">
+        <n-space align="center" :vertical="isMobile">
             <n-avatar v-if="isLaneAssigned" :size="64" :src="avatarAssignedSrc"></n-avatar>
             <n-avatar v-else :size="64" :src="avatarDefaultSrc"></n-avatar>
             <n-button v-if="isLaneAssigned" quaternary type="error" @click="removeLane">
@@ -37,17 +41,11 @@ function removeLane () {
             <n-button v-else secondary type="success" @click="asignLane">
                 Asignar
             </n-button>
-        </div>
+        </n-space>
         <div class="lane-text">
         </div>
     </n-space>
 </template>
 
 <style scoped>
- .lane-container {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    align-content: space-between;
- }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NButton, NIcon } from 'naive-ui';
+import { NButton, NIcon, NSpace } from 'naive-ui';
 import { StatsChartSharp as ChartIcon } from '@vicons/ionicons5'
 import { useUserExperienceStore } from '@/stores/ux'
 import { useChampionStore } from '@/stores/champion';
@@ -16,14 +16,14 @@ const uxStore = useUserExperienceStore()
 function switchToDraft() {
     uxStore.showDraftAnalysis = true
 }
-
+const isMobile = computed(() => uxStore.isMobile)
 </script>
 
 <template>
     <div class="lane-container">
-        <div class="lane-section">
+        <n-space  style="padding: 12px 0;" justify="space-evenly" :vertical="!isMobile">
             <LaneComponent v-for="value in lanes" :lane-name="value"/>
-        </div>
+        </n-space>
         <n-button type="info" @click="switchToDraft" :disabled="!enableDraftAnalysis">
             <template #icon>
                 <n-icon>
