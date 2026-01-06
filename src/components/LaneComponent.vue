@@ -26,19 +26,20 @@ function removeLane () {
 
 const uxStore = useUserExperienceStore()
 const isMobile = computed(() => uxStore.isMobile)
-
+const laneImageSize = computed(() => isMobile ? 48 : 64)
+const actionButtonSize = computed(() => isMobile ? 'tiny' : 'medium')
 </script>
 
 <template>
     <n-divider v-if="!isMobile" style="margin-bottom: 8px; margin-top: 12px;" title-placement="left">{{ laneName }}</n-divider>
     <n-space>
         <n-space align="center" :vertical="isMobile">
-            <n-avatar v-if="isLaneAssigned" :size="64" :src="avatarAssignedSrc"></n-avatar>
-            <n-avatar v-else :size="64" :src="avatarDefaultSrc"></n-avatar>
-            <n-button v-if="isLaneAssigned" quaternary type="error" @click="removeLane">
+            <n-avatar v-if="isLaneAssigned" :size="laneImageSize" :src="avatarAssignedSrc"></n-avatar>
+            <n-avatar v-else :size="laneImageSize" :src="avatarDefaultSrc"></n-avatar>
+            <n-button v-if="isLaneAssigned" :size="actionButtonSize" quaternary type="error" @click="removeLane">
               Remover
             </n-button>
-            <n-button v-else secondary type="success" @click="asignLane">
+            <n-button v-else :size="actionButtonSize" secondary type="success" @click="asignLane">
                 Asignar
             </n-button>
         </n-space>
