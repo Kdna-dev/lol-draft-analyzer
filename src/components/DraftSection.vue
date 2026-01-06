@@ -21,7 +21,7 @@ const isMobile = computed(() => uxStore.isMobile)
 
 <template>
     <div class="lane-container">
-        <n-space  style="padding: 12px 0;" justify="space-evenly" :vertical="!isMobile">
+        <n-space style="padding: 12px 0;" :size="0" justify="space-evenly" :vertical="!isMobile">
             <LaneComponent v-for="value in lanes" :lane-name="value"/>
         </n-space>
         <n-button type="info" @click="switchToDraft" :disabled="!enableDraftAnalysis">
