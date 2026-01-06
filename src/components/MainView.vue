@@ -51,7 +51,7 @@ watch(selectedChampionId, async (newVal) => {
                 <n-layout-sider bordered>
                     <n-space vertical style="padding: 12px;">
                         <n-input v-model:value="championSearch" type="text" placeholder="Buscar Campeon" />
-                        <n-space :size="[8,8]" class="hide-scrollbar" style="height: calc(100vh - 172px); overflow-y: scroll;">
+                        <n-space :size="[8,8]" class="hide-scrollbar" style="height: calc(100dvh - 172px); overflow-y: scroll;">
                             <ChampionProfile
                             v-for="value in championList"
                             :id="value.id"

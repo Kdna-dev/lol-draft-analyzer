@@ -15,7 +15,7 @@ function backToDraft() {
 </script>
 
 <template>
-    <n-space justify="space-evenly" class="hide-scrollbar" style="height: calc(100vh - 188px); overflow-y: scroll; padding: 12px;">
+    <n-space justify="space-evenly" class="hide-scrollbar" style="height: calc(100dvh - 188px); overflow-y: scroll; padding: 12px;">
         <n-card v-for="champ in lanes"
             :segmented="{
                 content: true,
